@@ -3,7 +3,7 @@
 	<head>
  		<title>Las Antipodas</title>
 		<style>
-			#map,#map_ant {
+			.maps {
 				width:500px;
 				height:400px;
 			}
@@ -11,10 +11,10 @@
  	</head>
 	<body>
     <h2>Mapa posicion y Antipodas</h2>
-    <div id ="map"></div>
-  	<div id ="map_ant"></div>
+    <div id ="map" class="maps"></div>
+  	<div id ="map_ant" class="maps"></div>
 
-		<script src = "https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
+   <script src = "https://maps.googleapis.com/maps/api/js?callback=initMap" async defer></script>
     <script type="text/javascript" src="index.js"></script>
 	</body>
 </html>
