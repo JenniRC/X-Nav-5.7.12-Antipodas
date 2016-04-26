@@ -1,39 +1,32 @@
-function initMapAnti(position) {
-	// Create a map object and specify the DOM element for display.
-	var lat_ant=-posicion.coords.latitude;
-	var long_ant=(posicion.coords.longitude + 180);
-
-	var mapDiv = document.getElementById("map_ant");
-
-		var map_ant = new google.maps.Map(mapDiv, {
-			center: {lat: lat_ant, lng: long_ant},
-			zoom: 15
-		});
+function getmap(position) {
+	var mapDiv1 = document.getElementById("map");
+	var latitude = position.coords.latitude;
+	var longitude = position.coords.longitude;
+	var map = new google.maps.Map(mapDiv1, {
+		center: {
+			lat: latitude, 
+			lng: longitude
+		},
+	zoom: 10
+	});
+	var mapDiv2 = document.getElementById("map_ant");
+	var antipode = {};
+	antipode.x = -latitude;
+	antipode.y = (longitude + 180) % 180;
+	var map2 = new google.maps.Map(mapDiv2, {
+		center: {
+			lat: antipode.x,
+			lng: antipode.y
+		},
+	zoom: 10
+	});
 }
 
-function initMap(posicion) {
-	var	latitude = position.coords.latitude;
-	var	long=position.coords.longitude;
-	  // Create a map object and specify the DOM element for display.
-		var maaap = document.getElementById("map");
-		var map = new google.maps.Map(maaap, {
-			center: {latitude, long},
-			zoom: 15
-		});
-
-		initMapAnti(posicion);
+function initMap(){
+	if (Modernizr.geolocation) {
+		navigator.geolocation.getCurrentPosition(getmap);
+	}else {
+		alert("not supported or permit share your position!")
 	}
-
-function geolocation(){
-			if (Modernizr.geolocation) {
-				navigator.geolocation.getCurrentPosition(ubicacion, null);
-				console.log("geolocation ok");
-			} else {
-				alert("not supported or permit share your position!")
-			}
-		}
-
-geolocation();
-
-
-
+    
+}
